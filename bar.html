@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+        }
+        .circle{
+            width: 160px;
+            height: 160px;
+            position: relative;
+        }
+        .outer{
+            width: 160px;
+            height: 160px;
+        border-radius: 50%;
+        /* border: 1px solid #ccc; */
+box-shadow: 6px 6px 10px -1px rgba(0,0,0,0.15),-6px -6px 10px -1px rgba(255,255,255,0.7);  
+      padding: 20px;
+        }
+        .inner{
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            box-shadow: inset 4px 4px 6px -1px rgba(0,0,0,0.2),
+            inset -4px -4px 6px -1px rgba(255,255,255,0.7),
+            -0.5px -0.5px 0px rgba(255,255,255,1),
+            0.5px 0.5px 0px rgba(0,0,0,0.15),
+            0px 12px 10px -10px rgba(0,0,0,0.05);  
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        #progress{
+            font-size: 20px;
+            font-weight: 600;
+            color: black;
+        }
+        circle{
+            stroke-width: 20px;
+stroke-dasharray: 472;
+stroke-dashoffset: 472;
+stroke: url(#GradientColor);
+animation: progress 2s linear forwards;
+fill: none;
+        }
+        svg{
+            position: absolute;
+            top: 0;
+        }
+        @keyframes progress {
+            100% {
+                stroke-dashoffset: 165;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="circle">
+        <div class="outer">
+            <div class="inner">
+<div id="progress">
+    75%
+</div>
+            </div>
+        </div>
+        <svg  width="160px" height="160px">
+            <defs>
+               <linearGradient id="GradientColor">
+                  <stop offset="0%" stop-color="#e91e63" />
+                  <stop offset="100%" stop-color="#673ab7" />
+               </linearGradient>
+            </defs>
+            <circle cx="80" cy="80" r="70" stroke-linecap="round" />
+    </svg>
+    </div>
+    <script>
+        var divEle = document.getElementById('progress');
+        var counter = 0;
+        setInterval(()=>{
+            if(counter==65){
+clearInterval();
+            }
+            else{
+            counter +=1;
+            divEle.innerHTML = counter + "%";
+            }
+        },20);
+    </script>
+</body>
+</html>
